@@ -5,11 +5,6 @@ import java.util.Scanner;
 public class Methods {
 
     public static void main(String[] args){
-        
-        int sqNum = square(7);
-        System.out.println("The square of 7 is " + sqNum);
-        
-        startScreen();
 
         Scanner animalInput = new Scanner(System.in);
         System.out.println("What's the name of the animal?");
@@ -26,9 +21,6 @@ public class Methods {
 
         Animal newAnimal = new Animal((int) animalLegs, animalHeight, animalName);
         newAnimal.getAnimal();
-
-        Animal tux = new Animal(2, 1.1f, "Pengu");
-        tux.getAnimal();
     }
     
     //procedure
