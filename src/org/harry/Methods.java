@@ -21,6 +21,22 @@ public class Methods {
 
         Animal newAnimal = new Animal((int) animalLegs, animalHeight, animalName);
         newAnimal.getAnimal();
+
+        Animal gibbon = new Animal(4,7,"Gibbon");
+        gibbon.getAnimal();
+
+        Animal lous = new Animal(2, (float) 1.75,"Loïs Gibbon");
+        lous.getAnimal();
+
+        Animal elephant = new Animal(4,5,"Elephant");
+        elephant.getAnimal();
+
+        Animal banana = new Animal(6,2,"Banana");
+        banana.getAnimal();
+
+        Animal tiger = new Animal(2,4, "tiger");
+        tiger.getAnimal();
+
     }
     
     //procedure
