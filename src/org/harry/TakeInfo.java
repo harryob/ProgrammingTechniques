@@ -20,11 +20,10 @@ public class TakeInfo {
         String data = name + ":" + age + ":" + height;
         
         try{
-            FileWriter file = new FileWriter("resources/takeinput.txt");
+            FileWriter file = new FileWriter("resources/takeinput.txt", true);
             BufferedWriter buff = new BufferedWriter(file);
             
             buff.write(data + "\n");
-            
             buff.close();
         }
         catch(IOException e){
@@ -33,7 +32,14 @@ public class TakeInfo {
         
         FileReader readFile = new FileReader("resources/takeinput.txt");
         Scanner fileScan = new Scanner(readFile);
-        
+
+        while(fileScan.hasNextLine()) {
+            String strSplit = fileScan.nextLine();
+            String[] arrSplit = strSplit.split(":");
+            System.out.println("Name: " + arrSplit[0]);
+            System.out.println("Age: " + arrSplit[1]);
+            System.out.println("Height: " + arrSplit[2]);
+        }
     }
     
 }
