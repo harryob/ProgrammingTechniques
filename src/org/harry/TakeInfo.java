@@ -31,6 +31,9 @@ public class TakeInfo {
             System.out.println("IOException Error.");
         }
         
+        FileReader readFile = new FileReader("resources/takeinput.txt");
+        Scanner fileScan = new Scanner(readFile);
+        
     }
     
 }
