@@ -1,4 +1,4 @@
-package org.harry;
+package org.harry.ProgrammingTechniques;
 
 import java.util.Scanner;
 
