@@ -21,7 +21,7 @@ public class TakeInfo {
         
         try{
             FileWriter file = new FileWriter("resources/takeinput.txt");
-            BufferedWriter buff = new BufferedWrite(file);
+            BufferedWriter buff = new BufferedWriter(file);
             
             buff.write(data + "\n");
             
