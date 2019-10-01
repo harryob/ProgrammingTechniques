@@ -13,9 +13,7 @@ public class fbScores {
         System.out.println("Output as (HTML) or (.txt)?");
         String choice = newObj.nextLine();
 
-        boolean choiceB;
-
-        choiceB = choice.equals("HTML");
+        boolean choiceB = choice.equals("HTML");
 
         readFile(choiceB);
     }
@@ -81,10 +79,8 @@ public class fbScores {
                 } else {
                     System.out.println(Arrays.toString(arrSplit));
 
-                        String data = "Home Team: " + arrSplit[0] + " Score: " + arrSplit[2] + System.lineSeparator() + "Away Team: " + arrSplit[1] + " Score: " + arrSplit[3] + System.lineSeparator() + System.lineSeparator();
+                        String data = "Home Team: " + arrSplit[0] + " Score: " + arrSplit[2] + System.lineSeparator() + "Away Team:" + arrSplit[1] + " Score: " + arrSplit[3] + System.lineSeparator() + System.lineSeparator();
                         writeToFile(data);
-
-
                 }
             }
             }
