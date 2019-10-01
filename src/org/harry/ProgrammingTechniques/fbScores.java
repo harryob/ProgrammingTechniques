@@ -1,33 +1,50 @@
 package org.harry.ProgrammingTechniques;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.*;
 import java.util.Arrays;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class fbScores {
     public static void main(String[] args){
-        readFile();
+        Scanner newObj = new Scanner(System.in);
+
+        System.out.println("Output as (HTML) or (.txt)?");
+        String choice = newObj.nextLine();
+
+        boolean choiceB;
+
+        choiceB = choice.equals("HTML");
+
+        readFile(choiceB);
     }
 
     private static boolean checkCharacters(String checkChar, boolean checkNum){
-        String[] alphabet = {"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"};
-        String[] numbers = {"1","2","3","4","5","6","7","8","9","10"};
+        String alphabet = "[a-zA-Z]";
+        String numbers = "[1-9]";
 
         if(checkNum){
-            for (String number : numbers) {
-                return checkChar.contains(number);
-            }
+            //checking if TEAM NAME has NUMBERS
+
+            Pattern r = Pattern.compile(numbers);
+            Matcher m = r.matcher(checkChar);
+
+            return m.find();
         }
-        else{
-            for (String s : alphabet) {
-                return checkChar.contains(s);
-            }
+        if(!checkNum){
+            //checking if SCORE has ALPHABET
+
+            Pattern r = Pattern.compile(alphabet);
+            Matcher m = r.matcher(checkChar);
+
+            return m.find();
         }
-        return true;
+
+        return false;
     }
 
-    private static void readFile(){
+    private static void readFile(Boolean choiceB){
 
         int failCount = 0;
 
@@ -48,22 +65,26 @@ public class fbScores {
 
             System.out.println(counter);
 
-            if(counter != 4){
-                System.out.println("Fail, poorly formatted results. Requires Team:Team:Score:Score");
-            }else {
+            if(counter != 4) System.out.println("Fail, poorly formatted results. Requires Team:Team:Score:Score");
+            else {
                 if (" ".equals(arrSplit[0]) || " ".equals(arrSplit[1]) || " ".equals(arrSplit[2]) || " ".equals(arrSplit[3]) || "".equals(arrSplit[0]) || "".equals(arrSplit[1]) || "".equals(arrSplit[2]) || "".equals(arrSplit[3])) {
                     System.out.println("Fail, empty characters detected.");
                     failCount += 1;
                 }
-                if (checkCharacters(arrSplit[0], true) || checkCharacters(arrSplit[1], true)) {
+                else if (checkCharacters(arrSplit[0], true) || checkCharacters(arrSplit[1], true)) {
                     System.out.println("Fail, team name contains numbers.");
                     failCount += 1;
                 }
-                if (checkCharacters(arrSplit[2], false) || checkCharacters(arrSplit[3], false)) {
+                else if (checkCharacters(arrSplit[2], false) || checkCharacters(arrSplit[3], false)) {
                     System.out.println("Fail, score contains letters in " + arrSplit[0]);
                     failCount += 1;
                 } else {
                     System.out.println(Arrays.toString(arrSplit));
+
+                        String data = "Home Team: " + arrSplit[0] + " Score: " + arrSplit[2] + System.lineSeparator() + "Away Team: " + arrSplit[1] + " Score: " + arrSplit[3] + System.lineSeparator() + System.lineSeparator();
+                        writeToFile(data);
+
+
                 }
             }
             }
@@ -74,4 +95,21 @@ public class fbScores {
             e.printStackTrace();
         }
 
-    }}
+    }
+
+    private static void writeToFile(String data){
+        try{
+            FileWriter file = new FileWriter("resources/writing.txt", true);
+            BufferedWriter buff = new BufferedWriter(file);
+
+            buff.write(data);
+
+            buff.close();
+        }
+        catch(IOException e){
+            System.out.println("The code did an IOException");
+        }
+
+    }
+
+}
