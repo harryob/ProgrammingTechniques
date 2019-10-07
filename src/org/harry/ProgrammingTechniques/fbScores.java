@@ -16,6 +16,8 @@ public class fbScores {
         boolean choiceB = choice.equals("HTML");
 
         readFile(choiceB);
+        
+        writeToHTMLFile();
     }
 
     private static boolean checkCharacters(String checkChar, boolean checkNum){
@@ -55,11 +57,11 @@ public class fbScores {
 
             int counter = 0;
 
-            for (String s : arrSplit) {
-                if (s != null) {
-                    counter++;
+                for (String s : arrSplit) {
+                    if (s != null) {
+                        counter++;
+                    }
                 }
-            }
 
             System.out.println(counter);
 
@@ -106,6 +108,29 @@ public class fbScores {
             System.out.println("The code did an IOException");
         }
 
+    }
+
+    private static void writeToHTMLFile() {
+        
+        System.out.println("Writing to HTML file");
+                
+        try{FileReader readFile = new FileReader("resources/writing.txt");
+        Scanner fileScan = new Scanner(readFile);
+        
+        BufferedWriter bw = new BufferedWriter(new FileWriter("resources/fbScores.html", true));
+        
+        bw.write("<html><head><title>results</title></head><body>");
+        
+        while(fileScan.hasNextLine()) {
+            String data = "<p>" + fileScan.nextLine() + "</p>";
+            
+            bw.write(data);
+        }
+        
+        bw.write("</body></html>");
+        }catch(IOException e){
+            System.out.println("Error!");
+        }
     }
 
 }
