@@ -13,4 +13,21 @@ public class FileReading {
             System.out.println(fileScan.nextLine());
         }
     }
+    public void readFile(){
+        try{FileReader readFile = new FileReader("resources/takeinput.txt");
+        Scanner fileScan = new Scanner(readFile);
+
+        while(fileScan.hasNextLine()) {
+            String strSplit = fileScan.nextLine();
+            String[] arrSplit = strSplit.split(":");
+            System.out.println("Name: " + arrSplit[0]);
+            System.out.println("Age: " + arrSplit[1]);
+            System.out.println("Height: " + arrSplit[2]);
+        }
+        }
+        catch(IOException e){
+            System.out.println("IOException Error");
+        }
+    }
+    
 }
